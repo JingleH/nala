@@ -117,3 +117,6 @@ screenshots
 /test-results/
 /playwright-report/
 /playwright/.cache/
+
+.prettierrc
+.persisted-results.json
