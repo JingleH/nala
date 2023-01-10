@@ -1,0 +1,32 @@
+name: Run Nala Manually
+
+on:
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'why trigger this'
+        required: false
+        default: 'manual testing'
+
+jobs:
+  action:
+    name: Running tests
+    if: contains(github.event.pull_request.labels.*.name, 'run-nala')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - name: Run Nala
+        uses: ./
+        env:
+          labels: ${{ join(github.event.pull_request.labels.*.name, ' ') }}
+          IMS_EMAIL: ${{ secrets.IMS_EMAIL }}
+          IMS_PASS: ${{ secrets.IMS_PASS }}
+      - name: Persist JSON Artifact
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: persisted-results.json
+          path: /persisted-results.json
+          retention-days: 30

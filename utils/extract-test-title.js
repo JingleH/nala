@@ -8,7 +8,12 @@ function cleanTag(t) {
 
 function extractTags(title) {
   const [, name, env, tag, url] = TITLE_REGEX.exec(title);
-  const branch = URL_REGEX.exec(url)[1];
+  let branch;
+  if (/_prod/.test(env)) {
+    branch = 'prod';
+  } else {
+    [, branch] = URL_REGEX.exec(url);
+  }
   return {
     name: cleanTag(name),
     env: cleanTag(env),
