@@ -36,7 +36,7 @@ const config = {
     ['list'],
     // ['./reporters/sharepoint-reporter.js'],
     // ['./reporters/mongo-reporter.js'],
-    // ['./reporters/json-reporter.js'],
+    ['./reporters/json-reporter.js'],
     // ['./reporters/api-reporter.js'],
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
