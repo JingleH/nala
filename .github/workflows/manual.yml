@@ -21,6 +21,6 @@ jobs:
         uses: actions/upload-artifact@v2
         if: always()
         with:
-          name: persisted-results.json
-          path: /persisted-results.json
+          name: persisted-results
+          path: persisted-results.json
           retention-days: 30
